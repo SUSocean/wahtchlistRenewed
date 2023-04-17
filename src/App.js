@@ -1,4 +1,4 @@
-import MoviesList from './features/movies/MoviesList'
+import MoviesList from './features/searchedMovies/SearchedMoviesList'
 
 function App() {
   return (
