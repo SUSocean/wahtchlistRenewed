@@ -1,34 +1,36 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMovies, selectAllMovies } from "./searchedMoviesSlice";
+import {
+    selectAllSearchedMovies,
+    selectSearchedMoviesStatus,
+    selectSearchedMoviesError,
+} from "./searchedMoviesSlice";
+import SearchedMovieExcerpt from "./SearchedMovieExcerpt";
 
-const MoviesList = () => {
-    const dispatch = useDispatch()
-    const [input, setInput] = useState('')
-
-    const onMoviesClicked = () => {
-        dispatch(fetchMovies({ movie: input }))
-    }
-
-    const movies = useSelector(selectAllMovies)
+const SearchedMoviesList = () => {
+    const movies = useSelector(selectAllSearchedMovies)
     console.log(movies)
+    const searchedMoviesStatus = useSelector(selectSearchedMoviesStatus)
+    const searchedMoviesError = useSelector(selectSearchedMoviesError)
+
+    let content
+
+    if (searchedMoviesStatus === 'loading') {
+        content = (
+            <p>Loading...</p>
+        )
+    } else if (searchedMoviesStatus === 'succeeded' && movies) {
+        content = movies.map(movie => <SearchedMovieExcerpt key={movie.id} movie={movie} />)
+    } else if (searchedMoviesError) {
+        content = (
+            <p>Something went wrong {searchedMoviesError.mesesage}</p>
+        )
+    }
 
     return (
         <>
-            <h2>Movies List Component</h2>
-            <input
-                type="text"
-                value={input}
-                onChange={e => setInput(e.target.value)}
-                placeholder="search movie"
-            />
-            <button
-                type="button"
-                onClick={onMoviesClicked}
-            >Search!
-            </button>
+            {content}
         </>
     )
 }
 
-export default MoviesList
+export default SearchedMoviesList

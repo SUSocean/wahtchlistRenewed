@@ -1,22 +1,22 @@
 import { createSlice, createAsyncThunk, createEntityAdapter } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const moviesAdapter = createEntityAdapter({
+const searchedMoviesAdapter = createEntityAdapter({
     sortComparer: (a, b) => b.Year.localeCompare(a.Year)
 })
 
-const initialState = moviesAdapter.getInitialState({
+const initialState = searchedMoviesAdapter.getInitialState({
     status: 'idle', //'idle' | 'loading' | 'succeeded' | 'failed'
     error: null,
 })
 
-export const fetchMovies = createAsyncThunk('movies/fetchMovies', async ({ movie }) => {
+export const fetchMovies = createAsyncThunk('searchedMovies/fetchMovies', async ({ movie }) => {
     const response = await axios.get(`https://www.omdbapi.com/?apikey=4ddaaf68&s=${movie}`)
     return response.data
 })
 
-const moviesSlice = createSlice({
-    name: 'movies',
+const searchedMoviesSlice = createSlice({
+    name: 'searchedMovies',
     initialState,
     reducers: {},
     extraReducers(builder) {
@@ -26,11 +26,13 @@ const moviesSlice = createSlice({
             })
             .addCase(fetchMovies.fulfilled, (state, action) => {
                 state.status = 'succeeded'
+                console.log(action.payload)
                 const loadedMovies = action.payload.Search.map(movie => {
                     movie.id = movie.imdbID
+                    movie.saved = false
                     return movie;
                 });
-                moviesAdapter.upsertMany(state, loadedMovies)
+                searchedMoviesAdapter.upsertMany(state, loadedMovies)
             })
             .addCase(fetchMovies.rejected, (state, action) => {
                 state.status = 'failed'
@@ -40,9 +42,12 @@ const moviesSlice = createSlice({
 })
 
 export const {
-    selectAll: selectAllMovies,
-    selectById: selectMoviesById,
-    selectIds: selectMoviesIds
-} = moviesAdapter.getSelectors(state => state.movies)
+    selectAll: selectAllSearchedMovies,
+    selectById: selectSearchedMoviesById,
+    selectIds: selectSearchedMoviesIds
+} = searchedMoviesAdapter.getSelectors(state => state.searchedMovies)
 
-export default moviesSlice.reducer
+export const selectSearchedMoviesStatus = (state) => state.searchedMovies.status
+export const selectSearchedMoviesError = (state) => state.searchedMovies.error
+
+export default searchedMoviesSlice.reducer
