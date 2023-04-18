@@ -32,7 +32,7 @@ const searchedMoviesSlice = createSlice({
                     movie.saved = false
                     return movie;
                 });
-                searchedMoviesAdapter.upsertMany(state, loadedMovies)
+                searchedMoviesAdapter.setAll(state, loadedMovies)
             })
             .addCase(fetchMovies.rejected, (state, action) => {
                 state.status = 'failed'

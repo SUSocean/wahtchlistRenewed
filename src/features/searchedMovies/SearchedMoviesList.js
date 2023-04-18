@@ -5,6 +5,9 @@ import {
     selectSearchedMoviesError,
 } from "./searchedMoviesSlice";
 import SearchedMovieExcerpt from "./SearchedMovieExcerpt";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+
 
 const SearchedMoviesList = () => {
     const movies = useSelector(selectAllSearchedMovies)
@@ -16,13 +19,13 @@ const SearchedMoviesList = () => {
 
     if (searchedMoviesStatus === 'loading') {
         content = (
-            <p>Loading...</p>
+            <FontAwesomeIcon className="spinner" icon={faSpinner} spinPulse />
         )
     } else if (searchedMoviesStatus === 'succeeded' && movies) {
         content = movies.map(movie => <SearchedMovieExcerpt key={movie.id} movie={movie} />)
     } else if (searchedMoviesError) {
         content = (
-            <p>Something went wrong {searchedMoviesError.mesesage}</p>
+            <p>Something went wrong {searchedMoviesError}</p>
         )
     }
 

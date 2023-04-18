@@ -1,0 +1,174 @@
+/* GENERAL */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.visually-hidden {
+    display: none;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    margin: 2rem auto;
+    display: block;
+}
+
+/* HEADER */
+
+.header {
+    width: 100%;
+    height: 200px;
+    background-color: #363636;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/public/images/background.jpg) no-repeat center;
+    background-size: cover;
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.header--headline {
+    margin-top: 0;
+    padding-top: 1rem;
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: .1rem;
+}
+
+.header--navigation {
+    text-align: center;
+}
+
+.header--navigation--list {
+    padding: 0;
+}
+
+.header--navigation--list--item {
+    list-style: none;
+    padding-bottom: 1rem;
+}
+
+.header--navigation--list--item-link {
+    color: whitesmoke;
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+
+.header--navigation--list--item-link:hover,
+.header--navigation--list--item-link:focus {
+    border-bottom: 1px solid whitesmoke;
+}
+
+/* SEARCH FORM */
+
+.searchMovieForm {
+    margin: 0 auto;
+    height: 30px;
+    margin-top: -15px;
+    bottom: 0;
+    width: 90%;
+    max-width: 550px
+}
+
+.searchMovieForm--input {
+    width: 75%;
+    height: 100%;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px 0 0 6px;
+    padding-left: 25px;
+}
+
+.searchMovieForm--input:focus,
+.searchMovieForm--input:hover,
+.searchMovieForm--input:active {
+    border: 1px solid #D1D5DB;
+    box-shadow: 1px 0 5px #D1D5DB;
+}
+
+.searchMovieForm--button {
+    width: 25%;
+    height: 100%;
+    border: 1px solid #D1D5DB;
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+}
+
+.searchMovieForm--button:disabled {
+    border: none;
+    box-shadow: inset 0 0 5px 2px #D1D5DB;
+    background-color: white;
+}
+
+.searchMovieForm--button:focus,
+.searchMovieForm--button:hover {
+    border: 1px solid #D1D5DB;
+    box-shadow: 1px 0 5px #D1D5DB;
+}
+
+.searchMovieForm--button:active {
+    border: none;
+    box-shadow: inset 0 0 5px 2px #D1D5DB;
+}
+
+/* MOVIES LIST LAYOUT */
+
+.main {
+    margin: 1rem auto 0;
+    width: 90%;
+    max-width: 1024px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.movie-card {
+    /* outline: 1px solid red; */
+    width: 10rem;
+    height: 15rem;
+}
+
+.movie-card--img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.movie-card--title {
+    display: none;
+}
+
+/* MEDIA */
+
+
+@media (min-width: 779px) {
+
+    .header--navigation {
+        max-width: 1024px;
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .header--navigation--list {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+    }
+
+    .movie-card--title {
+        /* display: block; */
+    }
+}

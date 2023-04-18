@@ -1,27 +1,36 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMovies } from "./searchedMoviesSlice";
+import { fetchMovies, selectSearchedMoviesStatus } from "./searchedMoviesSlice";
 
 const SearchMovieForm = () => {
     const dispatch = useDispatch()
     const [input, setInput] = useState('')
-
-    const onMoviesClicked = () => {
+    const status = useSelector(selectSearchedMoviesStatus)
+    const handleSubmit = () => {
         dispatch(fetchMovies({ movie: input }))
     }
 
+    const canClick = Boolean(input) && Boolean(status)
+
     return (
-        <form className="searchMovieForm">
+        <form
+            className="searchMovieForm"
+            onSubmit={(e) => {
+                e.preventDefault()
+                handleSubmit()
+            }}
+        >
             <input
+                className="searchMovieForm--input"
                 type="text"
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 placeholder="search movie"
             />
             <button
-                type="button"
-                onClick={onMoviesClicked}
-            >Search!
+                className="searchMovieForm--button"
+                disabled={!canClick}
+            >Search
             </button>
         </form>
     )
