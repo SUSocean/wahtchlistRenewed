@@ -1,21 +1,140 @@
 import SearchedMoviesList from "./SearchedMoviesList";
-// import { selectSearchedMoviesTotalResult, selectSearchedMoviesQuery } from "./searchedMoviesSlice";
-// import { useSelector } from "react-redux";
-// import { fetchPage } from "./searchedMoviesSlice";
-// import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    fetchMovies,
+    selectSearchedMoviesQuery,
+    selectSearchedMoviesTotalPages,
+    selectSearchedMoviesCurrentPage
+} from "./searchedMoviesSlice";
+import { useState, useEffect } from "react";
 
 const SearhedMoviesPage = () => {
-    // const dispatch = useDispatch()
-    // const handleClick = () => {
-    //     dispatch(fetchPage(index, page))
-    // }
-    // const querie = useSelector(selectSearchedMoviesQuery)
-    // const pages = useSelector(selectSearchedMoviesTotalResult)
-    // const pageSelector = [...Array(pages)].map (add every page a click function to fetchPages, think how to make it 1-10... may be move it to separate file)
+    const dispatch = useDispatch()
+    const currentQuery = useSelector(selectSearchedMoviesQuery)
+    const totalPages = useSelector(selectSearchedMoviesTotalPages)
+    const getCurrentPage = useSelector(selectSearchedMoviesCurrentPage)
+
+    const [currentPage, setCurrentPage] = useState(getCurrentPage)
+
+    useEffect(() => {
+        setCurrentPage(getCurrentPage)
+    }, [getCurrentPage])
+
+    const handleClick = (pageNumber) => {
+        dispatch(fetchMovies({ movie: currentQuery, page: pageNumber }))
+    }
+
+    const canBeClicked = pageNumber => Boolean(pageNumber === currentPage)
+
+    let PageSelection
+
+    if (totalPages > 0) {
+        if (totalPages < 11) {
+            PageSelection = [...Array(totalPages)].map((page, index) => {
+                const pageNumber = index + 1
+                return (
+                    <button
+                        onClick={() => {
+                            handleClick(pageNumber)
+                        }}
+                        disabled={canBeClicked(pageNumber)}
+                        key={index}
+                        className="select-page-button"
+                    >
+                        {pageNumber}
+                    </button>
+                )
+
+            })
+        } else {
+            let displayedOptions
+            if (currentPage <= 6) {
+                displayedOptions = [...Array(9)].map((page, index) => {
+                    const pageNumber = index + 1
+                    return (
+                        <button
+                            onClick={() => {
+                                handleClick(pageNumber)
+                            }}
+                            disabled={canBeClicked(pageNumber)}
+                            key={index}
+                            className="select-page-button"
+                        >
+                            {pageNumber}
+                        </button>
+                    )
+                })
+            } else {
+                let startingPageNumber = currentPage - 4
+                displayedOptions = [...Array(9)].map((page, index) => {
+                    const pageNumber = startingPageNumber + index
+
+                    if (pageNumber <= totalPages) {
+                        return (
+                            <button
+                                onClick={() => {
+                                    handleClick(pageNumber)
+                                }}
+                                disabled={canBeClicked(pageNumber)}
+                                key={index}
+                                className="select-page-button"
+                            >
+                                {pageNumber}
+                            </button>
+                        )
+                    }
+                })
+            }
+
+            PageSelection = (
+                <>
+                    {currentPage > 6 &&
+                        <>
+                            <button
+                                onClick={() => {
+                                    handleClick(1)
+                                }}
+                                disabled={canBeClicked({ pageNumber: 1 })}
+                                key={1}
+                                className="select-page-button"
+                            >
+                                1
+                            </button>
+                            <span>...</span>
+                        </>
+                    }
+                    {displayedOptions}
+                    {currentPage < totalPages - 4 &&
+                        <>
+                            <span>...</span>
+                            <button
+                                onClick={() => {
+                                    handleClick(totalPages)
+                                }}
+                                disabled={canBeClicked(totalPages)}
+                                key={totalPages}
+                                className="select-page-button"
+                            >
+                                {totalPages}
+                            </button>
+                        </>
+                    }
+                </>
+            )
+        }
+    }
+
+
     return (
         <>
-            {/* {pageSelector} */}
-            <SearchedMoviesList />
+            <div className="page-list">
+                <SearchedMoviesList />
+            </div>
+            {totalPages > 0 && <div
+                className="select-page-button-wrapper"
+            >
+                {PageSelection}
+            </div>}
         </>
     )
 }

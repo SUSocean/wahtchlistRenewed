@@ -7,7 +7,7 @@ const SearchMovieForm = () => {
     const [input, setInput] = useState('')
     const status = useSelector(selectSearchedMoviesStatus)
     const handleSubmit = () => {
-        dispatch(fetchMovies({ movie: input }))
+        dispatch(fetchMovies({ movie: input, page: 1 }))
     }
 
     const canClick = Boolean(input) && Boolean(status)

@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import Header from './Header'
 import SearchMovieForm from '../features/searchedMovies/SearchMovieForm'
+import Footer from './Footer'
 
 const Leyout = () => {
     return (
@@ -10,6 +11,7 @@ const Leyout = () => {
             <main className='main'>
                 <Outlet />
             </main>
+            <Footer />
         </>
     )
 }
