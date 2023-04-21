@@ -24,14 +24,17 @@ const searchedMoviesSlice = createSlice({
     reducers: {},
     extraReducers(builder) {
         builder
-            // fetchMovies
             .addCase(fetchMovies.pending, (state, action) => {
                 state.status = 'loading'
+                state.query = ''
+                state.totalpages = 0
             })
             .addCase(fetchMovies.fulfilled, (state, action) => {
                 if (action.payload.Response === 'False') {
                     state.status = 'failed'
                     state.error = action.payload.Error
+                    state.query = ''
+                    state.totalpages = 0
                     return
                 }
                 state.status = 'succeeded'
@@ -40,7 +43,6 @@ const searchedMoviesSlice = createSlice({
                 state.query = action.meta.arg.movie
                 const loadedMovies = action.payload.Search.map(movie => {
                     movie.id = movie.imdbID
-                    movie.saved = false
                     return movie;
                 });
                 searchedMoviesAdapter.setAll(state, loadedMovies)
@@ -48,6 +50,8 @@ const searchedMoviesSlice = createSlice({
             .addCase(fetchMovies.rejected, (state, action) => {
                 state.status = 'failed'
                 state.error = action.error.message
+                state.query = ''
+                state.totalpages = 0
             })
     }
 })

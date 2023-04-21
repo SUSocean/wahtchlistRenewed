@@ -7,6 +7,7 @@ import {
     selectSearchedMoviesCurrentPage
 } from "./searchedMoviesSlice";
 import { useState, useEffect } from "react";
+import SearchMovieForm from "./SearchMovieForm";
 
 const SearhedMoviesPage = () => {
     const dispatch = useDispatch()
@@ -127,6 +128,7 @@ const SearhedMoviesPage = () => {
 
     return (
         <>
+            <SearchMovieForm />
             <div className="page-list">
                 <SearchedMoviesList />
             </div>

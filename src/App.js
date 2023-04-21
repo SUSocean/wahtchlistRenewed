@@ -1,7 +1,8 @@
-import SearhedMoviesPage from "./features/searchedMovies/SearchMoviesPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from './components/Layout'
-
+import SearhedMoviesPage from "./features/searchedMovies/SearchMoviesPage";
+import SavedMoviesList from "./features/savedMovies/SavedMoviesList";
+import SingleMoviePage from "./components/SingleMoviePage";
 function App() {
   return (
     <>
@@ -11,8 +12,11 @@ function App() {
 
             <Route index element={<SearhedMoviesPage />} />
 
+            <Route path="/watchlist" element={<SavedMoviesList />} />
 
+            <Route path="/movie/:id" element={<SingleMoviePage />} />
           </Route>
+
         </Routes>
       </Router>
     </>
