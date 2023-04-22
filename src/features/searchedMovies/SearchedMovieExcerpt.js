@@ -9,12 +9,13 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 
 const SearchedMovieExcerpt = ({ movie }) => {
+    const width = window.innerWidth
     const dispatch = useDispatch()
     const savedMovies = useSelector(selectSavedMovies)
     const [ishovered, setIsHovered] = useState(false)
     const isMovieSaved = Boolean(savedMovies.find(film => film.id == movie.id))
     const saveIcon = <
-        FontAwesomeIcon className={`save-icon ${ishovered || isMovieSaved ? '' : 'visually-hidden'}`}
+        FontAwesomeIcon className={`save-icon ${ishovered || isMovieSaved || width < 780 ? '' : 'visually-hidden'}`}
         icon={isMovieSaved ? filledBookmark : regularBookmar}
         onClick={() => {
             let resultMovues

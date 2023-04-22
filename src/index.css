@@ -449,8 +449,4 @@ body {
     .single-movie-info {
         max-width: 55%;
     }
-
-    .movie-card .save-icon {
-        display: block;
-    }
 }
