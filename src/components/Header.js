@@ -15,15 +15,15 @@ const Header = () => {
         <header className="header">
             <h1 className="visually-hidden">Watchlist, find your films</h1>
             <nav className='header--navigation'>
-                <FontAwesomeIcon
+                {pathname == '/' && pathname == '/watchlist' && <FontAwesomeIcon
                     className='theme-selector'
                     icon={isDarkTheme ? faMoon : faSun}
                     onClick={() => {
                         isDarkTheme = !isDarkTheme
                         localStorage.setItem('darkTheme', JSON.stringify(isDarkTheme))
-                        // window.location.reload()
+                        window.location.reload()
                     }}
-                />
+                />}
                 {pathname == '/' &&
                     <h2 className='header--headline' onClick={() => window.location.reload()}>
                         Find Your Movie</h2>}
