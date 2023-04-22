@@ -18,6 +18,10 @@ body {
     min-height: 100vh;
 }
 
+#root:has(> .main.darktheme) {
+    background-color: #363636;
+}
+
 .visually-hidden {
     display: none;
 }
@@ -39,6 +43,13 @@ body {
     color: #222;
 }
 
+.main.darktheme .status-icon,
+.main.darktheme .status-error,
+.main.darktheme .find-icon-link {
+    color: whitesmoke;
+}
+
+
 .select-page-button-wrapper {
     border-top: 2px solid #2222;
     margin: 2rem auto;
@@ -49,6 +60,10 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
+}
+
+.main.darktheme {
+    background-color: #363636;
 }
 
 /* HEADER */
@@ -75,6 +90,13 @@ body {
 
 .header--navigation {
     text-align: center;
+}
+
+.theme-selector {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    cursor: pointer;
 }
 
 .header--navigation--list {
@@ -112,6 +134,13 @@ body {
     max-width: 550px
 }
 
+.main.darktheme .searchMovieForm--input,
+.main.darktheme .searchMovieForm--button {
+    background-color: #222;
+    border: none;
+    color: whitesmoke;
+}
+
 .searchMovieForm--input {
     width: 75%;
     height: 100%;
@@ -141,6 +170,10 @@ body {
     box-shadow: inset 0 0 5px 2px #D1D5DB;
     background-color: white;
     cursor: default;
+}
+
+.main.darktheme .searchMovieForm--button:disabled {
+    box-shadow: inset 0 0 5px 2px rgb(95, 95, 95);
 }
 
 .searchMovieForm--button:focus,
@@ -176,6 +209,11 @@ body {
     box-sizing: border-box;
 }
 
+.main.darktheme .movie-card {
+    border: 1px solid rgb(95, 95, 95);
+}
+
+
 .movie-card-link {
     cursor: pointer;
     text-decoration: none;
@@ -204,6 +242,10 @@ body {
 
 .movie-card--title {
     display: none;
+}
+
+.main.darktheme .movie-card--title {
+    color: lightgray;
 }
 
 /* SELECT PAGE BUTTON */
@@ -263,6 +305,10 @@ body {
     margin-bottom: 0;
 }
 
+.main.darktheme .single-movie-title {
+    color: whitesmoke;
+}
+
 .single-movie-raiting-wrapper {
     display: flex;
     align-items: center;
@@ -275,6 +321,10 @@ body {
 
 .single-movie-raiting-wrapper span {
     font-weight: bold;
+}
+
+.main.darktheme .single-movie-raiting-wrapper span {
+    color: whitesmoke;
 }
 
 .single-movie-data-wrapper {
@@ -304,6 +354,10 @@ body {
     border-bottom: 2px solid lightgrey;
 }
 
+.main.darktheme .single-movie-info-plot {
+    color: whitesmoke;
+}
+
 .single-movie-other-info-wrapper {
     padding: .5rem 0;
     border-bottom: 2px solid lightgrey;
@@ -312,6 +366,10 @@ body {
 .single-movie-other-info-data {
     margin-left: 1rem;
     font-size: 1.2rem;
+}
+
+.main.darktheme .single-movie-other-info-data {
+    color: whitesmoke;
 }
 
 /* FOOTER */

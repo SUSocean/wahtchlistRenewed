@@ -3,6 +3,7 @@ import { useGetMovieByIdQuery } from "../api/movieApi"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner, faStar } from '@fortawesome/free-solid-svg-icons'
 
+
 const SingleMoviePage = () => {
     const { id } = useParams()
     const { data, error, isLoading } = useGetMovieByIdQuery(id)

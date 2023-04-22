@@ -1,19 +1,34 @@
 import { Link } from 'react-router-dom'
 import { useLocation } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 
 const Header = () => {
     const { pathname } = useLocation()
 
-    let headline =
-        pathname == '/' ? 'Find Your Movie'
-            : pathname == '/watchlist' ? 'My Watchlist'
-                : 'Everything About'
+    if (!localStorage.getItem('darkTheme')) {
+        localStorage.setItem('darkTheme', JSON.stringify(false))
+    }
 
+    let isDarkTheme = JSON.parse(localStorage.getItem('darkTheme'))
     return (
         <header className="header">
             <h1 className="visually-hidden">Watchlist, find your films</h1>
             <nav className='header--navigation'>
-                <h2 className='header--headline'>{headline}</h2>
+                <FontAwesomeIcon
+                    className='theme-selector'
+                    icon={isDarkTheme ? faMoon : faSun}
+                    onClick={() => {
+                        isDarkTheme = !isDarkTheme
+                        localStorage.setItem('darkTheme', JSON.stringify(isDarkTheme))
+                        window.location.reload()
+                    }}
+                />
+                {pathname == '/' &&
+                    <h2 className='header--headline' onClick={() => window.location.reload()}>
+                        Find Your Movie</h2>}
+                {pathname == '/watchlist' && <h2 className='header--headline'>My Watchlist</h2>}
+                {pathname !== '/' && pathname !== '/watchlist' && <h2 className='header--headline'>Everything About</h2>}
                 <ul className='header--navigation--list'>
                     <li className='header--navigation--list--item'>
                         <Link

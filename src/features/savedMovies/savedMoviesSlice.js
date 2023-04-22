@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = []
+const initialState = localStorage.movies ? JSON.parse(localStorage.getItem('movies')) : []
 
 const savedMoviesSlice = createSlice({
     name: 'savedMovies',

@@ -14,7 +14,7 @@ const SavedMoviesList = () => {
         :
         <>
             <span className="status-error">You Don't Have Any Movies Saved</span>
-            <span className="status-error">Let's Find Aome</span>
+            <span className="status-error">Let's Find Some</span>
             <Link className="find-icon-link" to='/'>
                 <FontAwesomeIcon className="status-icon MagnifyingGlass" icon={faMagnifyingGlass} />
             </Link>
