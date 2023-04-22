@@ -449,4 +449,8 @@ body {
     .single-movie-info {
         max-width: 55%;
     }
+
+    .save-icon.visually-hidden {
+        display: block;
+    }
 }
