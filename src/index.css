@@ -450,7 +450,7 @@ body {
         max-width: 55%;
     }
 
-    .save-icon.visually-hidden {
+    .movie-card .save-icon {
         display: block;
     }
 }
