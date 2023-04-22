@@ -19,7 +19,6 @@ const SearchedMovieExcerpt = ({ movie }) => {
         onClick={() => {
             let resultMovues
             let currentMovies = localStorage.movies ? JSON.parse(localStorage.getItem('movies')) : []
-            console.log(currentMovies)
             if (isMovieSaved) {
                 resultMovues = currentMovies.filter(film => film.id !== movie.id)
             } else {

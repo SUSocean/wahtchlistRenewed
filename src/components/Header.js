@@ -21,7 +21,7 @@ const Header = () => {
                     onClick={() => {
                         isDarkTheme = !isDarkTheme
                         localStorage.setItem('darkTheme', JSON.stringify(isDarkTheme))
-                        window.location.reload()
+                        // window.location.reload()
                     }}
                 />
                 {pathname == '/' &&
