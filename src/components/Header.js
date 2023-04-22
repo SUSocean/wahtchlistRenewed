@@ -25,7 +25,7 @@ const Header = () => {
                     }}
                 />}
                 {pathname == '/' &&
-                    <h2 className='header--headline' onClick={() => window.location.reload()}>
+                    <h2 className='header--headline clickable' onClick={() => window.location.reload()}>
                         Find Your Movie</h2>}
                 {pathname == '/watchlist' && <h2 className='header--headline'>My Watchlist</h2>}
                 {pathname !== '/' && pathname !== '/watchlist' && <h2 className='header--headline'>Everything About</h2>}
