@@ -15,7 +15,7 @@ const Header = () => {
         <header className="header">
             <h1 className="visually-hidden">Watchlist, find your films</h1>
             <nav className='header--navigation'>
-                {pathname == '/' && pathname == '/watchlist' && pathname == '' && <FontAwesomeIcon
+                {pathname == '/' || pathname == '/watchlist' || pathname == '' || <FontAwesomeIcon
                     className='theme-selector'
                     icon={isDarkTheme ? faMoon : faSun}
                     onClick={() => {
