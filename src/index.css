@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    opacity: 1
+}
+
 /* GENERAL */
 * {
     box-sizing: border-box;
@@ -98,8 +105,8 @@ body {
 
 .theme-selector {
     position: absolute;
-    top: 15px;
-    left: 15px;
+    top: 5px;
+    left: 5px;
     cursor: pointer;
 }
 
@@ -302,6 +309,20 @@ body {
 .single-movie-title-wrapper {
     margin-bottom: 2rem;
     width: 100%;
+}
+
+.single-movie-title-saveIcon-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.single-movie-title-saveIcon {
+    color: rgb(210, 210, 55);
+    font-size: 2rem;
+    cursor: pointer;
 }
 
 .single-movie-title {

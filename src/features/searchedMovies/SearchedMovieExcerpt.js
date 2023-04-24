@@ -18,16 +18,16 @@ const SearchedMovieExcerpt = ({ movie }) => {
         FontAwesomeIcon className={`save-icon ${ishovered || isMovieSaved || width < 780 ? '' : 'visually-hidden'}`}
         icon={isMovieSaved ? filledBookmark : regularBookmar}
         onClick={() => {
-            let resultMovues
+            let resultMovies
             let currentMovies = localStorage.movies ? JSON.parse(localStorage.getItem('movies')) : []
             if (isMovieSaved) {
-                resultMovues = currentMovies.filter(film => film.id !== movie.id)
+                resultMovies = currentMovies.filter(film => film.id !== movie.id)
             } else {
-                resultMovues = currentMovies
-                resultMovues.push(movie)
+                resultMovies = currentMovies
+                resultMovies.push(movie)
             }
             dispatch(movieToggled(movie))
-            localStorage.setItem("movies", JSON.stringify(resultMovues))
+            localStorage.setItem("movies", JSON.stringify(resultMovies))
         }}
     />
 

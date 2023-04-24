@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialState = localStorage.movies ? JSON.parse(localStorage.getItem('movies')) : []
 
@@ -20,5 +20,6 @@ const savedMoviesSlice = createSlice({
 export const { movieToggled } = savedMoviesSlice.actions
 
 export const selectSavedMovies = (state) => state.savedMovies
+export const getSavedMovieById = (state, id) => state.savedMovies.filter(movie => movie.id === id)
 
 export default savedMoviesSlice.reducer
