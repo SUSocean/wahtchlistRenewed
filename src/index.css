@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
-input,
-button {
+input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
